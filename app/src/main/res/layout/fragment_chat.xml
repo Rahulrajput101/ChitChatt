@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ChatFragment">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewchat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <EditText
+            android:id="@+id/chatBox"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="10dp"
+            android:paddingStart="15dp"
+            android:hint="Type a message"
+            android:background="@drawable/edit_text_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/framelayut"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/framelayut"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:focusable="true">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            app:srcCompat="@android:drawable/ic_menu_send" />
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
