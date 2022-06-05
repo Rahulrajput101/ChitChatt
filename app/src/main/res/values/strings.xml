@@ -8,4 +8,7 @@
     <string name="Signup">SignUp</string>
     <string name="Name">Name</string>
     <string name="common_signin_button_text">SignIn</string>
+    <string name="log_out">Log out</string>
+    <string name="sent_message">Sent message</string>
+    <string name="receive_message">Receive message</string>
 </resources>

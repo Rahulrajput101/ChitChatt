@@ -20,6 +20,8 @@ class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef : DatabaseReference
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,8 +34,6 @@ class SignUpFragment : Fragment() {
             val email = binding.emailEdit.text.toString()
             val password = binding.passwordEdit.text.toString()
             val name = binding.nameEdit.text.toString()
-
-
             signUp(name, email, password)
         }
 
@@ -46,19 +46,18 @@ class SignUpFragment : Fragment() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
+                    activity?.finish()
                     findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToMainFragment())
                 } else {
-                    Toast.makeText(context, "Some error occured$email", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Some error occured $email", Toast.LENGTH_SHORT).show()
                 }
             }
-
 
     }
 
     private fun addUserToDatabase(name: String, email: String, uid: String) {
         mDbRef = FirebaseDatabase.getInstance().reference
         mDbRef.child("userList").child(uid).setValue(User(name,email,uid))
-
 
     }
 
