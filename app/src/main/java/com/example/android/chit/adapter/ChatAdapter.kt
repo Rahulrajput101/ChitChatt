@@ -1,44 +1,46 @@
-package com.example.android.chit.Adapter
+package com.example.android.chit.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.chit.R
 import com.example.android.chit.databinding.ItemContainerReceiveBinding
 import com.example.android.chit.databinding.ItemContainerSentBinding
 import com.example.android.chit.model.Message
+import com.example.android.chit.utilis.Constants
+import com.example.android.chit.utilis.Constants.VIEW_TYPE_RECEIVED
+import com.example.android.chit.utilis.Constants.VIEW_TYPE_SENT
 import com.google.firebase.auth.FirebaseAuth
 
-class ChatAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    private val VIEW_TYPE_SENT = 1
-    private val VIEW_TYPE_RECEIVED = 2
-
-    private var message: List<Message> = ArrayList()
+class ChatAdapter(private val message: ArrayList<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
       val currentMessage = message[position]
 
-        if(FirebaseAuth.getInstance().currentUser?.uid.equals(currentMessage.senderId)){
-            return VIEW_TYPE_SENT
+        return if(FirebaseAuth.getInstance().currentUser?.uid.equals(currentMessage.senderId)){
+            VIEW_TYPE_SENT
         }else{
-            return VIEW_TYPE_RECEIVED
+            VIEW_TYPE_RECEIVED
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if(viewType == VIEW_TYPE_SENT){
-            return SentViewHolder.from(parent)
+        return if(viewType == VIEW_TYPE_SENT){
+            SentViewHolder.from(parent)
         }else{
-            return ReceiveViewHolder.from(parent)
+            ReceiveViewHolder.from(parent)
         }
 
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == VIEW_TYPE_SENT) {
-            (holder as SentViewHolder).bind(message)
+            (holder as SentViewHolder).bind(message[position],position)
         }
-        (holder as ReceiveViewHolder).bind(message)
+        else {
+            (holder as ReceiveViewHolder).bind(message[position],position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -59,8 +61,10 @@ class ChatAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         }
 
-        fun bind(message: List<Message>) {
-            binding.senttxt.text = message.toString()
+        fun bind(message: Message,position: Int) {
+            binding.senttxt.text = message.message
+            binding.senttxt.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.purplebackground))
+            binding.executePendingBindings()
 
 
         }
@@ -81,8 +85,10 @@ class ChatAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         }
 
-        fun bind(message: List<Message>) {
-            binding.receivetxt.text = message.toString()
+        fun bind(message: Message,position: Int) {
+            binding.receivetxt.text = message.message
+            binding.receivetxt.setBackgroundColor(ContextCompat.getColor(binding.root.context,R.color.pinkbackground))
+            binding.executePendingBindings()
         }
     }
 }

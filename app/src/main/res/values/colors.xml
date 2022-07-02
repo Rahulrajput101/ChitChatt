@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    // color for background cardview
+    <color name="redbackground">#40FF0024</color>
+    <color name="pinkbackground">#40F21785</color>
+    <color name="purplebackground">#408913EF</color>
+    <color name="bluebackground">#5B136EE2</color>
+    <color name="greenbackground">#4013EF68</color>
+    <color name="yellowbackground">#4087FE00</color>
+
+    <color name="pinkupbackground">#A4F11282</color>
+    <color name="pinkactionbackground">#68F11282</color>
+
+    <color name="birdBlueLight">#B71366E2</color>
+    <color name="birdBlue">#1366E2</color>
 </resources>

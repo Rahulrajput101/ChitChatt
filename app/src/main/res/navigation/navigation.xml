@@ -4,23 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/logInFragment">
+
     <fragment
         android:id="@+id/logInFragment"
         android:name="com.example.android.chit.LogInFragment"
-        android:label="fragment_log_in"
-        tools:layout="@layout/fragment_log_in" >
+        android:label="ChitChatt"
+        tools:layout="@layout/fragment_log_in">
         <action
             android:id="@+id/action_logInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_logInFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+
+
+
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.android.chit.SignUpFragment"
-        android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        android:label="ChitChatt"
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
@@ -28,17 +32,27 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.android.chit.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        android:label="ChitChatt"
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
         <action
             android:id="@+id/action_mainFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
+
+
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.android.chit.ChatFragment"
-        android:label="ChatFragment" />
+        android:label="ChatFragment" >
+        <argument
+            android:name="userName"
+            app:argType="string"
+             />
+        <argument
+            android:name="uid"
+            app:argType="string" />
+    </fragment>
 </navigation>
