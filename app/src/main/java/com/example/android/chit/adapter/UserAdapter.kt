@@ -1,17 +1,13 @@
-package com.example.android.chit.Adapter
+package com.example.android.chit.adapter
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.chit.ChatFragment
 import com.example.android.chit.databinding.UserLayoutBinding
 import com.example.android.chit.model.User
-import kotlin.properties.Delegates
 
-class UserAdapter(  private val context: Context,private val  user: ArrayList<User>) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(  private val clickListener: OnUserClickListener,private val  user: ArrayList<User>) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
 
@@ -21,7 +17,7 @@ class UserAdapter(  private val context: Context,private val  user: ArrayList<Us
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
 
-       holder.bind(user[position])
+       holder.bind(user[position],clickListener)
 
 
     }
@@ -43,12 +39,17 @@ class UserAdapter(  private val context: Context,private val  user: ArrayList<Us
 
         }
 
-        fun bind(user: User){
+        fun bind(user: User, clickListener: OnUserClickListener){
             binding.textView.text = user.name
-
+            binding.user = user
+            binding.userClickListener = clickListener
 
         }
 
     }
 
+}
+
+class OnUserClickListener(val clickListener : (user :User) -> Unit){
+    fun onClick(user: User) = clickListener(user)
 }

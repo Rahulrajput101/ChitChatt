@@ -5,9 +5,9 @@
     <string name="password">Password</string>
     <string name="email">E-mail</string>
     <string name="login">LogIn</string>
-    <string name="Signup">SignUp</string>
+    <string name="Signup">Sign Up</string>
     <string name="Name">Name</string>
-    <string name="common_signin_button_text">SignIn</string>
+    <string name="common_signin_button_text">Sign In</string>
     <string name="log_out">Log out</string>
     <string name="sent_message">Sent message</string>
     <string name="receive_message">Receive message</string>

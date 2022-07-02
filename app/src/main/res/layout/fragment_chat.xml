@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="clickListener"
+            type="com.example.android.chit.ChatFragment" />
+    </data>
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +20,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewchat"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
 
 
         <EditText
@@ -47,7 +57,6 @@
             android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
-
             app:srcCompat="@android:drawable/ic_menu_send" />
 
         </FrameLayout>
